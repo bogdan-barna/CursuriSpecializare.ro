@@ -1,0 +1,6 @@
+{
+  "name": "CursuriSpecializare Design System & Platform",
+  "description": "Professional Academic Blue design system and interactive accredited course platform for specialization programs in Romania and the European Union.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
