@@ -5,6 +5,7 @@ import { Sidebar } from './components/layout/Sidebar';
 import { GuidelinesView } from './components/views/GuidelinesView';
 import { ComponentsView } from './components/views/ComponentsView';
 import { TokensView } from './components/views/TokensView';
+import { GradientsView } from './components/views/GradientsView';
 import { AssetsView } from './components/views/AssetsView';
 import { CatalogView } from './components/views/CatalogView';
 import { CourseDetailsModal } from './components/modals/CourseDetailsModal';
@@ -50,7 +51,7 @@ export default function App() {
     setActiveTab(tab);
     if (tab === 'guidelines') setActiveSidebarSection('brand-identity');
     else if (tab === 'components') setActiveSidebarSection('components');
-    else if (tab === 'tokens') setActiveSidebarSection('colors');
+    else if (tab === 'tokens' || tab === 'gradients') setActiveSidebarSection('colors');
     else if (tab === 'assets') setActiveSidebarSection('motion-imagery');
   };
 
@@ -153,6 +154,10 @@ export default function App() {
 
           {activeTab === 'tokens' && (
             <TokensView onShowToast={addToast} isDarkMode={isDarkMode} />
+          )}
+
+          {activeTab === 'gradients' && (
+            <GradientsView onShowToast={addToast} isDarkMode={isDarkMode} />
           )}
 
           {activeTab === 'assets' && (
