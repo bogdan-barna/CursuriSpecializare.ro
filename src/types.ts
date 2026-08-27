@@ -1,4 +1,4 @@
-export type TopTab = 'guidelines' | 'components' | 'tokens' | 'assets' | 'catalog';
+export type TopTab = 'guidelines' | 'components' | 'tokens' | 'gradients' | 'assets' | 'catalog';
 
 export type SidebarSection =
   | 'brand-identity'
