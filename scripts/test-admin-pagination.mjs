@@ -8,15 +8,16 @@ await page.evaluate(() => localStorage.removeItem('cs-admin-inscrieri-v1'));
 
 await page.reload({ waitUntil: 'networkidle' });
 
-const adminBtn = page.getByRole('button', { name: /^Admin$/i }).first();
+const adminBtn = page.getByRole('button', { name: /Admin/i }).first();
 await adminBtn.click();
 
+await page.getByRole('link', { name: 'Înscrieri' }).click();
 await page.waitForSelector('text=Înscrieri la cursuri');
 
 const firstPageName = await page.locator('tbody tr').first().locator('td').first().innerText();
-const range1 = await page.locator('text=/Afișare 1–10 din/').textContent();
+const range1 = await page.locator('text=/Afișare 1–/').textContent();
 
-await page.getByRole('button', { name: 'Pagina 2' }).click();
+await page.getByRole('button', { name: '2', exact: true }).click();
 await page.waitForTimeout(300);
 
 const secondPageName = await page.locator('tbody tr').first().locator('td').first().innerText();

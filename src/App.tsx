@@ -8,7 +8,7 @@ import { TokensView } from './components/views/TokensView';
 import { GradientsView } from './components/views/GradientsView';
 import { AssetsView } from './components/views/AssetsView';
 import { CatalogView } from './components/views/CatalogView';
-import { AdminInscrieriView } from './components/views/AdminInscrieriView';
+import { AdminApp } from './admin/AdminApp';
 import { loadEnrollments, saveEnrollments } from './utils/enrollmentStorage';
 import { CourseDetailsModal } from './components/modals/CourseDetailsModal';
 import { SdkModal } from './components/modals/SdkModal';
@@ -113,6 +113,16 @@ export default function App() {
     setShowSdkModal(false);
   };
 
+  if (activeTab === 'admin') {
+    return (
+      <AdminApp
+        enrollments={enrollments}
+        onUpdateEnrollmentStatus={handleUpdateEnrollmentStatus}
+        onExit={() => setActiveTab('guidelines')}
+      />
+    );
+  }
+
   return (
     <div
       className={`min-h-screen flex flex-col transition-colors duration-200 ${
@@ -197,13 +207,6 @@ export default function App() {
             />
           )}
 
-          {activeTab === 'admin' && (
-            <AdminInscrieriView
-              enrollments={enrollments}
-              onUpdateStatus={handleUpdateEnrollmentStatus}
-              isDarkMode={isDarkMode}
-            />
-          )}
         </main>
       </div>
 
