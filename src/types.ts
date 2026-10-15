@@ -1,4 +1,23 @@
-export type TopTab = 'guidelines' | 'components' | 'tokens' | 'gradients' | 'assets' | 'catalog';
+export type TopTab =
+  | 'guidelines'
+  | 'components'
+  | 'tokens'
+  | 'gradients'
+  | 'assets'
+  | 'catalog'
+  | 'admin';
+
+export type EnrollmentStatus = 'pending' | 'confirmed' | 'cancelled';
+
+export interface EnrollmentRecord {
+  id: string;
+  courseId: string;
+  courseTitle: string;
+  studentName: string;
+  studentEmail: string;
+  status: EnrollmentStatus;
+  createdAt: string;
+}
 
 export type SidebarSection =
   | 'brand-identity'

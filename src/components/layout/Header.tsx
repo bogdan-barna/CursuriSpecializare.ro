@@ -24,6 +24,7 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'gradients', label: 'Gradients' },
     { id: 'assets', label: 'Assets' },
     { id: 'catalog', label: 'Course Catalog', badge: 'EU Accredited' },
+    { id: 'admin', label: 'Admin', badge: 'Înscrieri' },
   ];
 
   return (
