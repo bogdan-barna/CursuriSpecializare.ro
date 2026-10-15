@@ -16,13 +16,24 @@
     "allowJs": true,
     "jsx": "react-jsx",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./src/*"],
+      "@admincn/*": ["./src/admincn/*"]
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
   },
-  "include": ["src"],
-  "exclude": ["lovable-src"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": [
+    "lovable-src",
+    "src/admincn/views",
+    "src/admincn/fake-db",
+    "src/admincn/types/apps",
+    "src/admincn/types/pages",
+    "src/admincn/utils",
+    "src/admincn/hooks/use-mail-app.ts",
+    "src/admincn/hooks/use-user-app.ts",
+    "src/admincn/hooks/use-event-visibility.ts",
+    "src/admincn/hooks/use-current-time-indicator.ts",
+    "src/admincn/components/layout/Download.tsx"
+  ]
 }
