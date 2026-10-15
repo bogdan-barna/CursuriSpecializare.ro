@@ -13,7 +13,13 @@ export function loadEnrollments(): EnrollmentRecord[] {
       return seed;
     }
     const parsed = JSON.parse(raw) as EnrollmentRecord[];
-    return Array.isArray(parsed) ? parsed : createSeedEnrollments();
+    if (!Array.isArray(parsed)) return createSeedEnrollments();
+    if (parsed.length === 0) {
+      const seed = createSeedEnrollments();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(seed));
+      return seed;
+    }
+    return parsed;
   } catch {
     return createSeedEnrollments();
   }

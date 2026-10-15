@@ -37,7 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
     >
       <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand Identity / Logo */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-3 shrink-0">
           <button
             onClick={() => onSelectTab('guidelines')}
             className="flex items-center space-x-2.5 text-left focus:outline-none group"
@@ -59,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Navigation Tabs */}
-        <nav className="hidden md:flex items-center space-x-1">
+        <nav className="hidden md:flex items-center space-x-1 min-w-0 flex-1 justify-center overflow-x-auto scrollbar-thin px-2">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -98,7 +98,7 @@ export const Header: React.FC<HeaderProps> = ({
         </nav>
 
         {/* Right CTA Actions */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-3 shrink-0">
           <button
             onClick={onOpenSdkModal}
             className="inline-flex items-center space-x-2 px-4 py-2 bg-[#004CCA] hover:bg-[#0062FF] active:bg-[#003EA8] text-white text-sm font-semibold rounded-[8px] transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0062FF] focus:ring-offset-2"

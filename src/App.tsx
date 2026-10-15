@@ -9,7 +9,7 @@ import { GradientsView } from './components/views/GradientsView';
 import { AssetsView } from './components/views/AssetsView';
 import { CatalogView } from './components/views/CatalogView';
 import { AdminInscrieriView } from './components/views/AdminInscrieriView';
-import { appendEnrollment, loadEnrollments, saveEnrollments } from './utils/enrollmentStorage';
+import { loadEnrollments, saveEnrollments } from './utils/enrollmentStorage';
 import { CourseDetailsModal } from './components/modals/CourseDetailsModal';
 import { SdkModal } from './components/modals/SdkModal';
 import { ToastContainer } from './components/ui/ToastContainer';
@@ -87,7 +87,11 @@ export default function App() {
       status: 'pending',
       createdAt: new Date().toISOString(),
     };
-    setEnrollments(appendEnrollment(record));
+    setEnrollments((prev) => {
+      const next = [record, ...prev];
+      saveEnrollments(next);
+      return next;
+    });
     addToast(
       'Înscriere înregistrată!',
       `Rezervarea pentru cursul "${course.title}" a fost trimisă pentru ${name} (${email}).`,

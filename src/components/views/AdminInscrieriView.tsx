@@ -70,6 +70,26 @@ export const AdminInscrieriView: React.FC<AdminInscrieriViewProps> = ({
 
   return (
     <div className="space-y-8 pb-16">
+      <div
+        className={`rounded-[8px] border px-4 py-3 text-sm ${
+          isDarkMode
+            ? 'bg-amber-950/30 border-amber-700/40 text-amber-100'
+            : 'bg-amber-50 border-amber-200 text-amber-950'
+        }`}
+        role="status"
+      >
+        <strong>Demo design system</strong> — az éles admin és a valódi înscrieri lista a{' '}
+        <a
+          href="https://www.cursurispecializare.ro/admin/inscrieri"
+          className="font-semibold underline text-[#004CCA] dark:text-[#60A5FA]"
+          target="_blank"
+          rel="noreferrer"
+        >
+          cursurispecializare.ro/admin/inscrieri
+        </a>{' '}
+        oldalon fut (Lovable). A lapozás ott a <code className="text-xs">lovable-src/</code> mappa
+        fájljaival telepíthető.
+      </div>
       <div>
         <span className="text-xs font-bold tracking-widest text-[#004CCA] uppercase">
           ADMINISTRARE PLATFORMĂ
