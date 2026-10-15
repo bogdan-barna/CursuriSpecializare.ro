@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { TopTab, SidebarSection, Course, ToastMessage } from './types';
+import React, { useEffect, useState } from 'react';
+import { TopTab, SidebarSection, Course, ToastMessage, EnrollmentRecord, EnrollmentStatus } from './types';
 import { Header } from './components/layout/Header';
 import { Sidebar } from './components/layout/Sidebar';
 import { GuidelinesView } from './components/views/GuidelinesView';
@@ -8,6 +8,8 @@ import { TokensView } from './components/views/TokensView';
 import { GradientsView } from './components/views/GradientsView';
 import { AssetsView } from './components/views/AssetsView';
 import { CatalogView } from './components/views/CatalogView';
+import { AdminInscrieriView } from './components/views/AdminInscrieriView';
+import { appendEnrollment, loadEnrollments, saveEnrollments } from './utils/enrollmentStorage';
 import { CourseDetailsModal } from './components/modals/CourseDetailsModal';
 import { SdkModal } from './components/modals/SdkModal';
 import { ToastContainer } from './components/ui/ToastContainer';
@@ -34,6 +36,11 @@ export default function App() {
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [showDocModal, setShowDocModal] = useState(false);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
+  const [enrollments, setEnrollments] = useState<EnrollmentRecord[]>(() => loadEnrollments());
+
+  useEffect(() => {
+    saveEnrollments(enrollments);
+  }, [enrollments]);
 
   const addToast = (title: string, message: string, type: 'success' | 'info' | 'blue' = 'blue') => {
     const id = Math.random().toString(36).substring(2, 9);
@@ -71,11 +78,25 @@ export default function App() {
   };
 
   const handleEnroll = (course: Course, name: string, email: string) => {
+    const record: EnrollmentRecord = {
+      id: `live-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+      courseId: course.id,
+      courseTitle: course.title,
+      studentName: name,
+      studentEmail: email,
+      status: 'pending',
+      createdAt: new Date().toISOString(),
+    };
+    setEnrollments(appendEnrollment(record));
     addToast(
       'Înscriere înregistrată!',
       `Rezervarea pentru cursul "${course.title}" a fost trimisă pentru ${name} (${email}).`,
       'success'
     );
+  };
+
+  const handleUpdateEnrollmentStatus = (id: string, status: EnrollmentStatus) => {
+    setEnrollments((prev) => prev.map((row) => (row.id === id ? { ...row, status } : row)));
   };
 
   const handleDownloadSdk = (packageName: string) => {
@@ -168,6 +189,14 @@ export default function App() {
             <CatalogView
               onSelectCourse={(c) => setSelectedCourse(c)}
               onShowToast={addToast}
+              isDarkMode={isDarkMode}
+            />
+          )}
+
+          {activeTab === 'admin' && (
+            <AdminInscrieriView
+              enrollments={enrollments}
+              onUpdateStatus={handleUpdateEnrollmentStatus}
               isDarkMode={isDarkMode}
             />
           )}
