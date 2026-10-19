@@ -6,7 +6,7 @@ import Logo from '@admincn/components/shared/Logo'
 import { Button } from '@admincn/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@admincn/components/ui/card'
 import { Separator } from '@admincn/components/ui/separator'
-import LoginForm from '@admincn/views/pages/auth/login/login-form'
+import MagicLinkForm from '@admincn/views/pages/auth/login/magic-link-form'
 
 // SVG Import
 import AuthBackgroundShape from '@admincn/assets/svg/auth-background-shape'
@@ -25,48 +25,47 @@ const Login = () => {
           </Link>
 
           <div>
-            <CardTitle className='mb-2 text-2xl font-semibold'>Sign in to Shadcn Studio</CardTitle>
-            <CardDescription className='text-base'>Ship Faster and Focus on Growth.</CardDescription>
+            <CardTitle className='mb-2 text-2xl font-semibold'>Autentificare</CardTitle>
+            <CardDescription className='text-base'>Lépj be a fiókodba e-mail linkkel vagy gyors belépéssel.</CardDescription>
           </div>
         </CardHeader>
 
         <CardContent className='px-6'>
-          <p className='text-muted-foreground mb-6 text-base'>
-            Login with{' '}
-            <Link href='#' className='text-card-foreground hover:underline'>
-              Magic Link
-            </Link>
-          </p>
-
-          {/* Quick Login Buttons */}
-          <div className='mb-6 flex flex-wrap gap-4 sm:gap-6'>
-            <Button variant='outline' className='grow'>
-              Login as User
-            </Button>
-            <Button variant='outline' className='grow'>
-              Login as Admin
-            </Button>
-          </div>
-
-          {/* Login Form */}
           <div className='space-y-4'>
-            <LoginForm />
+            <MagicLinkForm />
 
             <p className='text-muted-foreground text-center text-base'>
-              New on our platform?{' '}
+              Ha rendelkezel jelszóval,{' '}
+              <Link href='/pages/auth/login/password' className='text-card-foreground hover:underline'>
+                jelszóval belépés
+              </Link>
+            </p>
+
+            {/* Quick Login Buttons */}
+            <div className='flex flex-wrap gap-4 sm:gap-6'>
+              <Button variant='outline' className='grow'>
+                Belépés felhasználóként
+              </Button>
+              <Button variant='outline' className='grow'>
+                Belépés adminként
+              </Button>
+            </div>
+
+            <p className='text-muted-foreground text-center text-base'>
+              Új vagy a platformon?{' '}
               <Link href='/pages/auth/register' className='text-card-foreground hover:underline'>
-                Create an account
+                Fiók létrehozása
               </Link>
             </p>
 
             <div className='flex items-center gap-4'>
               <Separator className='flex-1' />
-              <p className='text-base'>or</p>
+              <p className='text-base'>vagy</p>
               <Separator className='flex-1' />
             </div>
 
             <Button variant='ghost' className='w-full' render={<Link href='#' />} nativeButton={false}>
-              Sign in with google
+              Belépés Google-lel
             </Button>
           </div>
         </CardContent>
