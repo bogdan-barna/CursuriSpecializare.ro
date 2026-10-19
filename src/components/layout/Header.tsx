@@ -1,6 +1,7 @@
 import React from 'react';
 import { TopTab } from '../../types';
-import { Moon, Sun, Download, ShieldCheck, Sparkles } from 'lucide-react';
+import { Moon, Sun, LogIn } from 'lucide-react';
+import PlatformLink from '../../platformRouter';
 
 interface HeaderProps {
   activeTab: TopTab;
@@ -99,6 +100,19 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Right CTA Actions */}
         <div className="flex items-center space-x-3 shrink-0">
+          <PlatformLink
+            href="/pages/auth/login"
+            aria-label="Autentificare"
+            className={`inline-flex items-center space-x-2 px-3 sm:px-4 py-2 text-sm font-semibold rounded-[8px] border transition-all focus:outline-none focus:ring-2 focus:ring-[#0062FF] focus:ring-offset-2 ${
+              isDarkMode
+                ? 'border-[#1E2E44] text-[#E2E8F0] hover:bg-[#1E2E44]'
+                : 'border-[#E2E8F0] text-[#0B1C30] bg-white hover:bg-[#F8F9FF]'
+            }`}
+          >
+            <LogIn className="w-4 h-4" aria-hidden />
+            <span className="hidden sm:inline">Autentificare</span>
+          </PlatformLink>
+
           <button
             onClick={onOpenSdkModal}
             className="inline-flex items-center space-x-2 px-4 py-2 bg-[#004CCA] hover:bg-[#0062FF] active:bg-[#003EA8] text-white text-sm font-semibold rounded-[8px] transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0062FF] focus:ring-offset-2"

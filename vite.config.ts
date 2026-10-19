@@ -10,6 +10,7 @@ export default defineConfig(() => {
       alias: {
         '@': path.resolve(__dirname, 'src'),
         '@admincn': path.resolve(__dirname, 'src/admincn'),
+        'next/link': path.resolve(__dirname, 'src/platformRouter.tsx'),
       },
     },
     server: {
