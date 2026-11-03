@@ -11,16 +11,18 @@ import Providers from '@admincn/components/Providers';
 import { SidebarInset } from '@admincn/components/ui/sidebar';
 import { Toaster } from '@admincn/components/ui/sonner';
 
-import type { EnrollmentRecord, EnrollmentStatus } from '../types';
+import type { EnrollmentRecord, EnrollmentStatus, EvaluationRecord } from '../types';
 
 import { AdminRouterProvider } from './router';
 import { AdminThemeProvider } from './AdminThemeProvider';
 import { DashboardPage } from './pages/DashboardPage';
 import { InscrieriPage } from './pages/InscrieriPage';
 import { CatalogAdminPage } from './pages/CatalogAdminPage';
+import { EvaluariPage } from './pages/EvaluariPage';
 
 export type AdminAppProps = {
   enrollments: EnrollmentRecord[];
+  evaluations: EvaluationRecord[];
   onUpdateEnrollmentStatus: (id: string, status: EnrollmentStatus) => void;
   onExit: () => void;
   initialPath?: string;
@@ -28,6 +30,7 @@ export type AdminAppProps = {
 
 export function AdminApp({
   enrollments,
+  evaluations,
   onUpdateEnrollmentStatus,
   onExit,
   initialPath = '/admin/dashboard',
@@ -58,8 +61,11 @@ export function AdminApp({
     if (pathname.startsWith('/admin/catalog')) {
       return <CatalogAdminPage />;
     }
+    if (pathname.startsWith('/admin/evaluari')) {
+      return <EvaluariPage evaluations={evaluations} />;
+    }
     return <DashboardPage enrollments={enrollments} />;
-  }, [pathname, enrollments, onUpdateEnrollmentStatus]);
+  }, [pathname, enrollments, evaluations, onUpdateEnrollmentStatus]);
 
   return (
     <AdminThemeProvider>
