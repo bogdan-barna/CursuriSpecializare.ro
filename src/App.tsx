@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { TopTab, SidebarSection, Course, ToastMessage, EnrollmentRecord, EnrollmentStatus } from './types';
+import {
+  TopTab,
+  SidebarSection,
+  Course,
+  ToastMessage,
+  EnrollmentRecord,
+  EnrollmentStatus,
+  EvaluationRecord,
+} from './types';
 import { Header } from './components/layout/Header';
 import { Sidebar } from './components/layout/Sidebar';
 import { GuidelinesView } from './components/views/GuidelinesView';
@@ -10,6 +18,7 @@ import { AssetsView } from './components/views/AssetsView';
 import { CatalogView } from './components/views/CatalogView';
 import { AdminApp } from './admin/AdminApp';
 import { loadEnrollments, saveEnrollments } from './utils/enrollmentStorage';
+import { loadEvaluations } from './utils/evaluationStorage';
 import { CourseDetailsModal } from './components/modals/CourseDetailsModal';
 import { SdkModal } from './components/modals/SdkModal';
 import { ToastContainer } from './components/ui/ToastContainer';
@@ -37,6 +46,7 @@ export default function App() {
   const [showDocModal, setShowDocModal] = useState(false);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [enrollments, setEnrollments] = useState<EnrollmentRecord[]>(() => loadEnrollments());
+  const [evaluations] = useState<EvaluationRecord[]>(() => loadEvaluations());
 
   useEffect(() => {
     saveEnrollments(enrollments);
@@ -117,6 +127,7 @@ export default function App() {
     return (
       <AdminApp
         enrollments={enrollments}
+        evaluations={evaluations}
         onUpdateEnrollmentStatus={handleUpdateEnrollmentStatus}
         onExit={() => setActiveTab('guidelines')}
       />

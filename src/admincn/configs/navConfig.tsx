@@ -61,6 +61,14 @@ export const navItems: NavItem[] = [
         href: '/admin/inscrieri',
         activePath: '/admin/inscrieri',
       },
+      {
+        icon: 'FileBadge',
+        label: 'Evaluări',
+        href: '/admin/evaluari',
+        activePath: '/admin/evaluari',
+        badge: 'PDF',
+        badgeClassName: 'right-2',
+      },
     ],
   },
   {

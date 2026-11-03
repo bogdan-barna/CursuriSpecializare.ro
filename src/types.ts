@@ -19,6 +19,30 @@ export interface EnrollmentRecord {
   createdAt: string;
 }
 
+export type EvaluationOutcome = 'promovat' | 'respins' | 'in_asteptare';
+
+export interface EvaluationCriterion {
+  id: string;
+  label: string;
+  score: number;
+  maxScore: number;
+}
+
+export interface EvaluationRecord {
+  id: string;
+  courseId: string;
+  courseTitle: string;
+  studentName: string;
+  studentEmail: string;
+  cohortLabel: string;
+  evaluatorName: string;
+  evaluatedAt: string;
+  overallPercent: number;
+  outcome: EvaluationOutcome;
+  criteria: EvaluationCriterion[];
+  comments: string;
+}
+
 export type SidebarSection =
   | 'brand-identity'
   | 'colors'
